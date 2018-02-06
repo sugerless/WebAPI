@@ -14,7 +14,7 @@ use Yaf\Controller_Abstract;
 
 abstract class Api_Base_Controller extends Controller_Abstract
 {
-    protected $needLogin = true;
+    protected $needLogin = false;
 
     /**
      * 参数校验规则

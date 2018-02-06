@@ -7,5 +7,7 @@ class Service_Base_Model
         $instance = new static();
 
         return call_user_func([$instance, $name], $arguments);
+
     }
+
 }
