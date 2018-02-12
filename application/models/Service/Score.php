@@ -26,8 +26,6 @@ class Service_Score_Model extends Service_Base_Model
 
         $records=Dao_Score_Model::where($condition)->
         select('student_id','lesson_name','score','grade_point','credit')->get();
-
-
         return $records;
     }
 
@@ -41,7 +39,7 @@ class Service_Score_Model extends Service_Base_Model
         ];
 
         $cord=Dao_Score_Model::where($condition)->first();
-        if(!($cord->student_id)) {
+        if($cord->isEmpty()) {
             $cord = new Dao_Score_Model;
         }
         $cord->student_id=$record['student_id'];
@@ -54,10 +52,10 @@ class Service_Score_Model extends Service_Base_Model
         $cord->credit=$record['credit'];
 
         if($cord->save()){
-            echo 'successful';
+            return true;
         }
         else{
-            echo 'error';
+            return false;
         }
     }
 

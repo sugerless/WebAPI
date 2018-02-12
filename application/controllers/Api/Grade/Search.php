@@ -29,11 +29,29 @@ class Api_Grade_Search_Controller extends Api_Base_Controller
 
     protected function process()
     {
-        // TODO: Implement process() method.
-        $Param=$this->getRequest()->getParams();
-        var_dump($Param);
-        Service_Score_Model::Search_Score($Param['student_id'],$Param['academic_year'],$Param['term']);
 
+        $Param = $this->getRequest()->getParams();
+        $results = Service_Score_Model::Search_Score($Param['student_id'], $Param['academic_year'], $Param['term']);
+        $respose = [];
+        if ($results->isEmpty()) {
+            $respose = [
+                ['student_id' => $Param['student_id'],
+                    'lesson_name' => '结果不存在',
+                    'score' => '结果不存在',
+                    'grade_point' => '结果不存在',
+                    'credit' => '结果不存在',
+                ]
+            ];
+        }
+        else {
+            foreach ($results as $result) {
+                array_push($respose, $result);
+            }
+        }
+
+        headers_sent() || header('Content-Type: application/json');
+
+        $this->getResponse()->setBody(json_encode($respose, JSON_UNESCAPED_UNICODE));
     }
 
 }

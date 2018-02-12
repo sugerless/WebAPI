@@ -48,6 +48,10 @@ class Api_Grade_Create_Controller extends Api_Base_Controller
         // TODO: Implement process() method.
 
         $records=$this->getRequest()->getParams();
-        Service_Score_Model::Store($records);
+        if(Service_Score_Model::Store($records))
+            echo 'successful';
+
     }
+
+
 }
