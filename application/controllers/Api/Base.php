@@ -44,7 +44,7 @@ abstract class Api_Base_Controller extends Controller_Abstract
      */
     protected function method(): string
     {
-        return 'GET';
+        return 'POST';
     }
 
     /**
@@ -93,6 +93,7 @@ abstract class Api_Base_Controller extends Controller_Abstract
         } finally {
             Log::info('input', $this->getRequest()->getParams());
         }
+
     }
 
     protected function response(array $data, int $code = 0, string $message = 'success')
