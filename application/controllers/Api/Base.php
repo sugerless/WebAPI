@@ -73,11 +73,12 @@ abstract class Api_Base_Controller extends Controller_Abstract
 
     public function indexAction()
     {
+
         try {
             $this->auth();
             $this->validate();
 
-            $this->process();
+           $this->process();
         } catch (CustomException $e) {
             Log::info($e->getMessage(), $e->getTrace(), 'error');
             $this->response([], $e->getCode(), $e->getMessage());
@@ -135,4 +136,5 @@ abstract class Api_Base_Controller extends Controller_Abstract
 
         throw new NeedLoginException();
     }
+
 }
