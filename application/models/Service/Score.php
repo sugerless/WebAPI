@@ -44,6 +44,9 @@ class Service_Score_Model extends Service_Base_Model
         if($cord->isEmpty()) {
             $cord = new Dao_Score_Model();
         }
+        else{
+            $cord=$cord->first();
+        }
         $cord->student_id=$record['StudentId'];
         //$cord->lesson_id=$record['lesson_id'];
         $cord->score=$record['Score'];

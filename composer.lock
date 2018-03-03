@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "261e0889281b5df2608266ce5c0b9d44",
+    "content-hash": "d10fcb7feb95812475c26b0d789fa4df",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -74,6 +74,52 @@
             "time": "2018-01-09T20:05:19+00:00"
         },
         {
+            "name": "firebase/php-jwt",
+            "version": "v5.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/firebase/php-jwt.git",
+                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/firebase/php-jwt/9984a4d3a32ae7673d6971ea00bae9d0a1abba0e.zip",
+                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": " 4.8.35"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Firebase\\JWT\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Neuman Vong",
+                    "email": "neuman+pear@twilio.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Anant Narayanan",
+                    "email": "anant@php.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
+            "homepage": "https://github.com/firebase/php-jwt",
+            "time": "2017-06-27T22:17:23+00:00"
+        },
+        {
             "name": "illuminate/container",
             "version": "v5.5.33",
             "source": {
@@ -119,7 +165,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v5.5.33",
+            "version": "v5.5.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -222,16 +268,16 @@
         },
         {
             "name": "illuminate/filesystem",
-            "version": "v5.5.33",
+            "version": "v5.5.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/filesystem.git",
-                "reference": "b0ee7466dc73a5a2aa46a47a57664324b73191e7"
+                "reference": "31921ef731567fc0b80c110437a028ae8a3add13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/illuminate/filesystem/b0ee7466dc73a5a2aa46a47a57664324b73191e7.zip",
-                "reference": "b0ee7466dc73a5a2aa46a47a57664324b73191e7",
+                "url": "https://files.phpcomposer.com/files/illuminate/filesystem/31921ef731567fc0b80c110437a028ae8a3add13.zip",
+                "reference": "31921ef731567fc0b80c110437a028ae8a3add13",
                 "shasum": ""
             },
             "require": {
@@ -268,20 +314,20 @@
             ],
             "description": "The Illuminate Filesystem package.",
             "homepage": "https://laravel.com",
-            "time": "2017-12-28T15:31:37+00:00"
+            "time": "2018-02-07T00:04:00+00:00"
         },
         {
             "name": "illuminate/support",
-            "version": "v5.5.33",
+            "version": "v5.5.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "f6eb4fc687a1956cb44007604cd31dc50858eca9"
+                "reference": "c10c2fcabe8cb907ebb2dcae4f50e7c83a872055"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/illuminate/support/f6eb4fc687a1956cb44007604cd31dc50858eca9.zip",
-                "reference": "f6eb4fc687a1956cb44007604cd31dc50858eca9",
+                "url": "https://files.phpcomposer.com/files/illuminate/support/c10c2fcabe8cb907ebb2dcae4f50e7c83a872055.zip",
+                "reference": "c10c2fcabe8cb907ebb2dcae4f50e7c83a872055",
                 "shasum": ""
             },
             "require": {
@@ -292,7 +338,7 @@
                 "php": ">=7.0"
             },
             "replace": {
-                "tightenco/collect": "self.version"
+                "tightenco/collect": "<5.5.33"
             },
             "suggest": {
                 "illuminate/filesystem": "Required to use the composer class (5.2.*).",
@@ -325,7 +371,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2018-01-19T13:47:08+00:00"
+            "time": "2018-02-14T15:12:47+00:00"
         },
         {
             "name": "illuminate/translation",
@@ -502,25 +548,25 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.22.1",
+            "version": "1.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "7cdf42c0b1cc763ab7e4c33c47a24e27c66bfccc"
+                "reference": "4a874a39b2b00d7e0146cd46fab6f47c41ce9e65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/briannesbitt/Carbon/7cdf42c0b1cc763ab7e4c33c47a24e27c66bfccc.zip",
-                "reference": "7cdf42c0b1cc763ab7e4c33c47a24e27c66bfccc",
+                "url": "https://files.phpcomposer.com/files/briannesbitt/Carbon/4a874a39b2b00d7e0146cd46fab6f47c41ce9e65.zip",
+                "reference": "4a874a39b2b00d7e0146cd46fab6f47c41ce9e65",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0",
-                "symfony/translation": "~2.6 || ~3.0"
+                "symfony/translation": "~2.6 || ~3.0 || ~4.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "~2",
-                "phpunit/phpunit": "~4.0 || ~5.0"
+                "phpunit/phpunit": "^4.8.35 || ^5.7"
             },
             "type": "library",
             "extra": {
@@ -551,7 +597,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2017-01-16T07:55:07+00:00"
+            "time": "2018-02-28T09:22:05+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -1036,33 +1082,33 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v3.4.4",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "10b32cf0eae28b9b39fe26c456c42b19854c4b84"
+                "reference": "a9c4e4cc56f7eff0960c4f6c157da8f6b13211fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/symfony/translation/10b32cf0eae28b9b39fe26c456c42b19854c4b84.zip",
-                "reference": "10b32cf0eae28b9b39fe26c456c42b19854c4b84",
+                "url": "https://files.phpcomposer.com/files/symfony/translation/a9c4e4cc56f7eff0960c4f6c157da8f6b13211fc.zip",
+                "reference": "a9c4e4cc56f7eff0960c4f6c157da8f6b13211fc",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5.9|>=7.0.8",
+                "php": "^7.1.3",
                 "symfony/polyfill-mbstring": "~1.0"
             },
             "conflict": {
-                "symfony/config": "<2.8",
+                "symfony/config": "<3.4",
                 "symfony/dependency-injection": "<3.4",
                 "symfony/yaml": "<3.4"
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/config": "~2.8|~3.0|~4.0",
+                "symfony/config": "~3.4|~4.0",
                 "symfony/dependency-injection": "~3.4|~4.0",
                 "symfony/finder": "~2.8|~3.0|~4.0",
-                "symfony/intl": "^2.8.18|^3.2.5|~4.0",
+                "symfony/intl": "~3.4|~4.0",
                 "symfony/yaml": "~3.4|~4.0"
             },
             "suggest": {
@@ -1073,7 +1119,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.4-dev"
+                    "dev-master": "4.0-dev"
                 }
             },
             "autoload": {
@@ -1100,7 +1146,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-18T22:16:57+00:00"
+            "time": "2018-01-18T22:19:33+00:00"
         }
     ],
     "packages-dev": [],

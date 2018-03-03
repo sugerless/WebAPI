@@ -18,13 +18,11 @@ class Bootstrap extends Bootstrap_Abstract
     public function _initView(Dispatcher $dispatcher)
     {
         $uri = $dispatcher->getRequest()->getRequestUri();
-        echo $uri,"<br>";
         if (substr($uri, 0, 4) === '/api') {
             Dispatcher::getInstance()->disableView();
-            echo '666';
+
         }
         Dispatcher::getInstance()->disableView();
-        echo '666';
     }
 
     public function _initAutoload(Dispatcher $dispatcher)
