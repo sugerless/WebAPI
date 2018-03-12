@@ -24,7 +24,13 @@
 
          $records = $this->getRequest()->getParams();
 
-             if (Service_User_Model::Exist($records)) {
+         $message=['swuId'=>$records['swuId'],
+                    'password'=>$records['password'],
+             ];
+
+
+         Middle_Redis_SendMessage_Controller::Send($message);
+         /*    if (Service_User_Model::Exist($records)) {
 
                  $jwt=$records['token'];
 
@@ -47,8 +53,8 @@
                  }
 
              }
-
-             $this->getResponse()->setBody(json_encode($respose, JSON_UNESCAPED_UNICODE));
+*/
+             //$this->getResponse()->setBody(json_encode($respose, JSON_UNESCAPED_UNICODE));
          }
 
 

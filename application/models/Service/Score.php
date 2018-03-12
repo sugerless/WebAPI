@@ -8,7 +8,12 @@ class Service_Score_Model extends Service_Base_Model
         return $records;
     }
 
-    public static function Search_Score($student_id,$academic_year=0,$term=0){
+    public static function Search_Score($student_id,$academic_year,$term){
+
+        if($academic_year==null)
+            $academic_year=0;
+        if($term==null)
+            $term=0;
 
         if($term)
             $oper2='=';
