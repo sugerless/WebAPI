@@ -4,6 +4,7 @@
 class Api_Grade_Create_Controller extends Api_Base_Controller
 {
 
+
     protected function rules(): array
     {
         // TODO: Implement rules() method.
@@ -51,6 +52,7 @@ class Api_Grade_Create_Controller extends Api_Base_Controller
         if(Service_Score_Model::Store($records))
             $respose=['Result'=>'Successful'];
         $this->getResponse()->setBody(json_encode($respose, JSON_UNESCAPED_UNICODE));
+
 
     }
 

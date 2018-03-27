@@ -33,7 +33,7 @@ class Service_User_Model extends Service_Base_Model{
             ];
 
         $cord=Dao_User_Model::where($codition)->select('swu_id')->get();
-        echo $cord->first();
+
         if($cord->isEmpty()){
             return false;
         }

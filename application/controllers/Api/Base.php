@@ -78,7 +78,7 @@ abstract class Api_Base_Controller extends Controller_Abstract
             $this->auth();
             $this->validate();
 
-           //$this->process();
+            $this->process();
         } catch (CustomException $e) {
             Log::info($e->getMessage(), $e->getTrace(), 'error');
             $this->response([], $e->getCode(), $e->getMessage());
@@ -94,7 +94,7 @@ abstract class Api_Base_Controller extends Controller_Abstract
         } finally {
             Log::info('input', $this->getRequest()->getParams());
         }
-        $this->process();
+        //$this->process();
     }
 
     protected function response(array $data, int $code = 0, string $message = 'success')
