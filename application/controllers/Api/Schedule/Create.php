@@ -55,10 +55,10 @@ class Api_Schedule_Create_Controller extends Api_Base_Controller
         // TODO: Implement process() method.
 
         $records=$this->getRequest()->getParams();
-        if(Service_Schedule_Model::Store($records))
-            $respose=['Result'=>'Successful'];
-        $this->getResponse()->setBody(json_encode($respose, JSON_UNESCAPED_UNICODE));
-
+        if(Service_Schedule_Model::Store($records)) {
+            $this->success=true;
+            $this->code=200;
+        }
     }
 
 

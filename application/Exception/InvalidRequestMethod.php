@@ -6,8 +6,8 @@ use Throwable;
 
 class InvalidRequestMethod extends CustomException
 {
-    public function __construct(string $method, int $code = 10000, Throwable $previous = null)
+    public function __construct(string $message="无效的请求方式", int $code = 500, Throwable $previous = null)
     {
-        parent::__construct('无效的请求方式：' . $method, $code, $previous);
+        parent::__construct($message, $code, $previous);
     }
 }

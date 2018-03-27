@@ -1,11 +1,17 @@
 <?php
 
  class Api_User_Login_Controller extends Api_Base_Controller{
+
+     protected function method(): string
+     {
+         return 'GET';
+     }
+
      protected function rules(): array
      {
          // TODO: Implement rules() method.
          return[
-           'swuId'=>'required|digits_between:15,15',
+             'swuId'=>'required|digits_between:15,15',
              'password'=>'required',
              ];
      }
@@ -19,15 +25,22 @@
              'password.required'=>'密码不能为空',
          ];
      }
-     public function text(){
+     protected function loginrequest($message){
+
          $url='URL';
+
          $post_data=array(
-             "swuId"=>"222015321210069",
-             "password"=>"1997521w"
+             "username"=>$message['swuId'],
+             "password"=>$message['password'],
          );
-         $responses=Middle_Curl_CurlRequest_Controller::SendRequest($url);
-         echo 'hello';
-         echo $responses;
+
+         $responses=Middle_Curl_CurlRequest_Controller::SendRequest($url,$post_data);
+         $data=json_decode($responses,true);
+         if($data['code']=="200")
+             return true;
+         else if($data['code']=="400"){
+             return false;
+         }
      }
      protected function process()
      {
@@ -38,17 +51,28 @@
              'swuId'=>$records['swuId'],
              'password'=>$records['password'],
              ];
-         /*$begintime=$records['times'];
-         $t=time();
-         $timediff=$t-$begintime;
-         $remain = $timediff%86400;
-         //$remain = $remain % 3600;
-         $hours = intval($remain / 3600);
-         $mins = intval($remain / 60);
-         echo $hours;
-         */
-         //Middle_Redis_SendMessage_Controller::Send($message);
-           if (Service_User_Model::Exist($records)) {
+
+         //if(!$this->loginrequest($message))
+         if(false){
+             $this->success=false;
+             $this->code=500;
+             $this->msg="用户名或密码错误";
+         }
+         else{
+             $time=time();
+             $token=array(
+                 "swuId"=>$records['swuId'],
+                 "time"=>$time,
+             );
+             $jwt=Middle_Token_Create_Controller::CreateToken($token);
+             $this->data = [
+                 "token"=>$jwt,
+             ];
+             $this->success=true;
+             $this->code=200;
+         }
+
+           /*if (Service_User_Model::Exist($records)) {
 
                  $jwt=$records['token'];
 
@@ -64,22 +88,21 @@
 
                  if (Service_User_Model::Store($records)) {
                      $time=time();
-                     $token=array("swuId"=>$records['swuId'],
-                            "time"=>$time
+                     $token=array(
+                         "swuId"=>$records['swuId'],
+                         "time"=>$time,
                          );
                      $jwt=Middle_Token_Create_Controller::CreateToken($token);
                      $respose = [
                             "success"=>true,
                             "msg"=>"some information",
-                             "code"=>200,//204
-                             "token"=>$jwt,
+                            "code"=>200,//204
+                            "token"=>$jwt,
                      ];
                  }
 
              }
-
-
-             $this->getResponse()->setBody(json_encode($respose, JSON_UNESCAPED_UNICODE));
+            */
          }
 
 

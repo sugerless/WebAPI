@@ -2,6 +2,10 @@
 
 class Api_Schedule_Search_Controller extends Api_Base_Controller
 {
+    protected function method(): string
+{
+    return 'GET';
+}
 
     protected function rules(): array
     {
@@ -38,23 +42,10 @@ class Api_Schedule_Search_Controller extends Api_Base_Controller
         $Param = $this->getRequest()->getParams();
         $results = Service_Schedule_Model::Search_Schedule($Param['StudentId'], $Param['AcademicYear'], $Param['Term']);
 
-        $respose = [];
         if ($results->isEmpty()) {
-            $respose = [
-                ['StudentId' => $Param['StudentId'],
-                    'LessonName'=> '结果不存在',
-                    'AcademicYear'=> '结果不存在',
-                    'Term'=>'结果不存在',
-                    'Teacher'=>'结果不存在',
-                    'Term'=>'结果不存在',
-                    'Weeks'=>'结果不存在',
-                    'Time'=>'结果不存在',
-                    'Week'=>'结果不存在',
-                    'Campus'=>'结果不存在',
-                    'Classroom'=>'结果不存在',
-                    'Academic_Title'=>'结果不存在'
-                ]
-            ];
+            $this->success=false;
+            $this->code=500;
+            $this->msg="信息不存在";
         }else {
             foreach ($results as $result) {
 
@@ -72,13 +63,11 @@ class Api_Schedule_Search_Controller extends Api_Base_Controller
                         'Academic_Title'=>$result->academic_title
                     ];
 
-                array_push($respose, $result1);
+                array_push($this->data, $result1);
             }
+            $this->success=true;
+            $this->code=200;
         }
-
-        headers_sent() || header('Content-Type: application/json');
-
-        $this->getResponse()->setBody(json_encode($respose, JSON_UNESCAPED_UNICODE));
 
     }
 }

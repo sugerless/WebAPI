@@ -14,8 +14,11 @@ use Yaf\Controller_Abstract;
 
 abstract class Api_Base_Controller extends Controller_Abstract
 {
-    protected $needLogin = false;
-
+    protected $needLogin = true;
+    protected $success = true;
+    protected $code = "200";
+    protected $data =[];
+    protected $msg="";
     /**
      * 参数校验规则
      *
@@ -54,7 +57,7 @@ abstract class Api_Base_Controller extends Controller_Abstract
     public function init()
     {
         if ($this->getRequest()->method !== $this->method()) {
-            throw new InvalidRequestMethod($this->getRequest()->method);
+            throw new InvalidRequestMethod();
         }
 
         switch ($this->method()) {
@@ -75,33 +78,35 @@ abstract class Api_Base_Controller extends Controller_Abstract
     {
 
         try {
+
             $this->auth();
             $this->validate();
-
             $this->process();
+            $this->response($this->success,$this->data,$this->code,$this->msg);
         } catch (CustomException $e) {
             Log::info($e->getMessage(), $e->getTrace(), 'error');
             $this->response([], $e->getCode(), $e->getMessage());
         } catch (ValidationException $e) {
             Log::info($e->getMessage(), $e->getTrace(), 'error');
             foreach ($e->errors() as $field => $error) {
-                $this->response([], -2, $error[0] ?? $field . '无效');
+                $this->response([], 500, $error[0] ?? $field . '无效');
                 break;
             }
         } catch (\Exception $e) {
             Log::info($e->getMessage(), $e->getTrace(), 'error');
-            $this->response([], -1, '系统错误');
+            $this->response([], 500, '系统错误');
         } finally {
             Log::info('input', $this->getRequest()->getParams());
         }
         //$this->process();
     }
 
-    protected function response(array $data, int $code = 0, string $message = 'success')
+    protected function response($success=true, array $data, int $code = 0, string $message = 'success')
     {
         $responseData = [
-            'errno' => $code,
+            'success' => $success,
             'msg'   => $message,
+            'code'  =>$code,
             'data'  => empty($data) ? new stdClass() : $data,
         ];
 
@@ -130,10 +135,13 @@ abstract class Api_Base_Controller extends Controller_Abstract
             return true;
         }
 
-        if (isset($_SESSION['loginInfo']['status']) && $_SESSION['loginInfo']['status']) {
+        if (Middle_Token_Validate_Controller::Validate()===1) {
             return true;
         }
 
+        if($this->getRequest()->getControllerName()=="Api_User_Login"){
+            return true;
+        }
         throw new NeedLoginException();
     }
 
